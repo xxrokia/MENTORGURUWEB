@@ -1,0 +1,261 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Events</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .student-portal {
+            display: flex;
+            background-color: #bcbcbc;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 280px;
+            background-color: rgb(56, 56, 56);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .menu {
+            margin-top: 20px;
+        }
+
+        .menu-item a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from the parent */
+        }
+
+        .menu-item {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-item:hover {
+            background-color: #000000;
+        }
+
+        .menu-item.active {
+            background-color: #4290a3;
+            color: #ffffff;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #000000;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .events-section {
+            margin-top: 20px;
+        }
+
+        .event-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+
+        .event-card p {
+            margin: 5px 0;
+        }
+
+        .event-actions button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .event-actions button:hover {
+            background-color: #4290a3;
+        }
+
+        .add-event-form input,
+        .add-event-form button {
+            margin-right: 10px;
+        }
+    </style>
+    <script defer>
+        let events = [];
+
+        function displayEvents() {
+            const eventsSection = document.getElementById("events");
+            eventsSection.innerHTML = "";
+
+            events.forEach((event, index) => {
+                const eventCard = createEventCard(event, index);
+                eventsSection.appendChild(eventCard);
+            });
+        }
+
+        function createEventCard(event, index) {
+            const eventCard = document.createElement("div");
+            eventCard.classList.add("event-card");
+            eventCard.innerHTML = `
+                <p><strong>Title:</strong> ${event.title}</p>
+                <p><strong>Date:</strong> ${event.date}</p>
+                <p><strong>Description:</strong> ${event.description}</p>
+                <div class="event-actions">
+                    <button onclick="editEvent(${index})">Edit</button>
+                    <button onclick="deleteEvent(${index})">Delete</button>
+                </div>
+            `;
+            return eventCard;
+        }
+
+        function addEvent() {
+            const eventTitle = document.getElementById("eventTitle").value;
+            const eventDate = document.getElementById("eventDate").value;
+            const eventDescription = document.getElementById("eventDescription").value;
+
+            if (eventTitle && eventDate && eventDescription) {
+                const newEvent = { title: eventTitle, date: eventDate, description: eventDescription };
+                events.push(newEvent);
+                displayEvents();
+                clearAddEventForm();
+            } else {
+                alert("Please enter title, date, and description.");
+            }
+        }
+
+        function clearAddEventForm() {
+            document.getElementById("eventTitle").value = "";
+            document.getElementById("eventDate").value = "";
+            document.getElementById("eventDescription").value = "";
+        }
+
+        function editEvent(index) {
+            const newTitle = prompt("Enter new title:", events[index].title);
+            const newDate = prompt("Enter new date:", events[index].date);
+            const newDescription = prompt("Enter new description:", events[index].description);
+
+            if (newTitle !== null && newDate !== null && newDescription !== null) {
+                events[index].title = newTitle;
+                events[index].date = newDate;
+                events[index].description = newDescription;
+                displayEvents();
+            }
+        }
+
+        function deleteEvent(index) {
+            const confirmDelete = confirm("Are you sure you want to delete this event?");
+            if (confirmDelete) {
+                events.splice(index, 1);
+                displayEvents();
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="student-portal screen">
+        <div class="container">
+            <div class="sidebar">
+                <div class="menu">
+                    <div class="menu-item">STUDENT PORTAL</div>
+                    <div class="menu-item"><a href="username.html">Audrey Gesare</a></div>
+                    <div class="menu-item"><a href="courses.html">Courses</a></div>
+                    <div class="menu-item active"><a href="events.html">Events</a></div>
+                    <div class="menu-item"><a href="inbox.html">Inbox</a></div>
+                    <div class="menu-item"><a href="mentor_info.html">Mentor Info</a></div>
+                    <div class="menu-item"><a href="goals.html">Goals</a></div>
+                    <div class="menu-item"><a href="sign_out.html">Sign Out</a></div>
+                </div>
+            </div>
+            <div class="main-content">
+                <header>
+                    <h1>Events Page</h1>
+                    <p>Welcome to our coaching platform!</p>
+                </header>
+
+                <section id="events" class="events-section">
+                    <!-- Events -->
+                    <div class="event-card">
+                        <p><strong>Title:</strong> Networking Workshop</p>
+                    <p><strong>Date:</strong> 20/11/2023</p>
+                    <p><strong>Description:</strong> An interactive workshop to enhance your networking skills. Learn how to make meaningful connections in your industry.</p>
+                        <div class="event-actions">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <p><strong>Title:</strong> Mock Interview Day</p>
+                    <p><strong>Date:</strong> 01/12/2023</p>
+                    <p><strong>Description:</strong> Prepare for job interviews by participating in mock interviews. Receive valuable feedback from experienced mentors.</p>
+                        <div class="event-actions">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <p><strong>Title:</strong> Workshop on Resume Building</p>
+                        <p><strong>Date:</strong> 10/12/2023</p>
+                        <p><strong>Description:</strong> Learn how to create an effective and compelling resume that stands out to employers.</p>
+                        <div class="event-actions">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+
+                    <div class="event-card">
+                        <p><strong>Title:</strong> Industry Panel Discussion</p>
+                        <p><strong>Date:</strong> 25/12/2023</p>
+                        <p><strong>Description:</strong> Join industry experts as they discuss trends, challenges, and opportunities in various fields.</p>
+                       <div class="event-actions">
+                        <div class="event-actions">
+                            <button>Edit</button>
+                            <button>Delete</button>
+                        </div>
+                    </div>
+
+                <section class="add-event-form">
+                    <label for="eventDate">Date:</label>
+                    <input type="text" id="eventDate" placeholder="Enter event date">
+                    <label for="eventTitle">Title:</label>
+                    <input type="text" id="eventTitle" placeholder="Enter event title">
+                    <label for="eventDescription">Description:</label>
+                    <input type="text" id="eventDescription" placeholder="Enter event description">
+                    <button onclick="addEvent()">Add Event</button>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+```

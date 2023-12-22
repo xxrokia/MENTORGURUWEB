@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(40, 40, 40);
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .action-buttons button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .action-buttons button:hover {
+            background-color: #4290a3;
+        }
+
+        .add-student-form {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .add-student-form input {
+            flex: 1;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .add-student-form button {
+            background-color: #4290a3;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-student-form button:hover {
+            background-color: #4290a3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <h2>Student Records</h2>
+
+        <!-- Display student records in a table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Mentor</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <!-- Student records will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <!-- Add Student Form -->
+        <div class="add-student-form">
+            <input type="text" id="studentName" placeholder="Student Name">
+            <input type="text" id="studentEmail" placeholder="Student Email">
+            <button onclick="addStudent()">Add Student</button>
+        </div>
+    </div>
+
+    <script>
+        // Dummy data for initial testing
+        const students = [
+            { id: 1, name: 'Nancy Rokia', email: 'nrokia@mguru.com', mentor: 'Mentor A' },
+            { id: 2, name: 'Audrey Gesare', email: 'agesare@mguru.com', mentor: 'Mentor B' },
+            { id: 3, name: 'Jessy Kariuki', email: 'jkariuki@mguru.com', mentor: 'Mentor C' },
+            { id: 4, name: 'Omina Baraza', email: 'obaraza@mguru.com', mentor: 'Mentor B' },
+            { id: 5, name: 'Yuri Coret', email: 'ycoret@mguru.com', mentor: 'Mentor A' },
+            { id: 6, name: 'Nimo Wahome', email: 'nwahome@mguru.com', mentor: 'Mentor C' },
+            { id: 7, name: 'Kelly Kirshner', email: 'kkirshner@mguru.com', mentor: 'Mentor D' },
+            { id: 8, name: 'Peter Mabwa', email: 'pmabwa@mguru.com', mentor: 'Mentor D' },
+            
+            // Add more dummy data as needed
+        ];
+
+        // Function to render student records in the table
+        function renderStudents() {
+            const tableBody = document.getElementById('studentTableBody');
+            tableBody.innerHTML = '';
+
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.email}</td>
+                    <td>${student.mentor}</td>
+                    <td class="action-buttons">
+                        <button onclick="editStudent(${student.id})">Edit</button>
+                        <button onclick="deleteStudent(${student.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to add a new student
+        function addStudent() {
+            const studentName = document.getElementById('studentName').value;
+            const studentEmail = document.getElementById('studentEmail').value;
+
+            // Add validation and other logic as needed
+
+            const newStudent = {
+                id: students.length + 1,
+                name: studentName,
+                email: studentEmail,
+                mentor: '' // Initially, the student has no mentor
+            };
+
+            students.push(newStudent);
+            renderStudents();
+        }
+
+        // Function to edit a student
+        function editStudent(studentId) {
+            // Implement edit logic
+            alert(`Edit student with ID ${studentId}`);
+        }
+
+        // Function to delete a student
+        function deleteStudent(studentId) {
+            // Implement delete logic
+            const index = students.findIndex(student => student.id === studentId);
+            if (index !== -1) {
+                students.splice(index, 1);
+                renderStudents();
+            }
+        }
+
+        // Initial rendering of students
+        renderStudents();
+    </script>
+</body>
+
+</html>

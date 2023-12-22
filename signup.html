@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    <title>Sign Up</title>
+</head>
+
+<body>
+    <div class="signup-container">
+        <div class="signup-box">
+            <h2>Sign Up</h2>
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            </div>
+            <div class="accept-terms">
+                <input type="checkbox" id="accept-terms" required> <label for="accept-terms">Accept Terms & Conditions</label>
+            </div>
+
+            <button class="signup-button" onclick="validateSignup()">Sign Up</button>
+            <div class="already-have-account">
+                <p>Already have an account? <a href="login.html">Log in</a></p>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        function validateSignup() {
+            const email = document.getElementById('email').value;
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const acceptTerms = document.getElementById('accept-terms').checked;
+
+            // Check if password and confirm password match
+            if (password !== confirmPassword) {
+                alert("Password and Confirm Password do not match.");
+                return;
+            }
+
+            // Perform additional validation as needed
+
+            // If all validations pass, redirect to courses.html
+            if (acceptTerms) {
+                window.location.href = "courses.html";
+            } else {
+                alert("Please accept the Terms & Conditions.");
+            }
+        }
+    </script>
+</body>
+
+</html>

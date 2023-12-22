@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Admin Dashboard</title>
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+    <div class="login-container animate__animated animate__fadeIn">
+        <h1>Welcome to the Admin Portal</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <button onclick="login()">Log in</button>
+    </div>
+
+    <div class="admin-dashboard" id="adminDashboard" style="display: none;">
+        <!-- Admin dashboard content here -->
+        <div class="dashboard-section animate__animated animate__fadeInDown">
+            <h2>Student Records 📚</h2>
+            <a href="student_records.html"><button>View All Students</button></a>
+            <!-- Add more buttons and content as needed -->
+        </div>
+        <div class="dashboard-section animate__animated animate__fadeInUp">
+            <h2>Mentor Records 👨‍🏫</h2>
+            <a href="mentor_records.html"><button>View All Mentors</button></a>
+            <!-- Add more buttons and content as needed -->
+        </div>
+    </div>
+    </div>
+
+    </div>
+
+    <script>
+        
+        function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Check if username and password are correct (this is a basic example, use secure methods in a real system)
+    if (username === "admin" && password === "admin123") {
+        // Hide login and show admin dashboard
+        document.getElementById("adminDashboard").style.display = "block";
+        document.querySelector(".login-container").style.display = "none";
+        // Call a function to load and display student and mentor records, etc.
+        loadAdminDashboardContent();
+    } else {
+        alert("Invalid credentials. Please try again.");
+    }
+}
+
+function loadAdminDashboardContent() {
+    // You can fetch and display student and mentor records here
+    // This is where you would interact with your backend
+    // Example: Fetch and display student records
+    fetch('/api/students')
+        .then(response => response.json())
+        .then(data => {
+            // Process and display student records
+            console.log(data);
+        })
+        .catch(error => console.error('Error:', error));
+    
+    // Similar steps for mentors
+}
+
+function toggleAdminDashboard() {
+    const adminDashboard = document.getElementById('adminDashboard');
+    adminDashboard.style.display = adminDashboard.style.display === 'none' ? 'block' : 'none';
+}
+
+function viewAllStudents() {
+    // Logic to view all student records
+    console.log('Viewing all students');
+}
+
+function addStudent() {
+    // Logic to add a new student
+    console.log('Adding a new student');
+}
+
+function viewAllMentors() {
+    // Logic to view all mentor records
+    console.log('Viewing all mentors');
+}
+
+function addMentor() {
+    // Logic to add a new mentor
+    console.log('Adding a new mentor');
+}
+    </script>
+</body>
+
+</html>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(40, 40, 40);
+    background-image: "/Users/mac/Desktop/MENTOR WEBSITE/images/clear one guy.png";
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: left;
+}
+
+.login-container h1 {
+    color: #4290a3;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.login-container button {
+    background-color: #4290a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-dashboard {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    
+}
+
+.dashboard-section {
+    flex-basis: 45%;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.dashboard-section h2 {
+    color: #4290a3;
+}
+
+.dashboard-section button {
+    background-color: #4290a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+</style>

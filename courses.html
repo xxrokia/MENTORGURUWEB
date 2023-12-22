@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="courses.css"> <!-- Adjust the CSS file link if necessary -->
+    <title>Courses</title>
+</head>
+
+<body>
+    <div class="student-portal screen">
+        <div class="container">
+            <div class="sidebar">
+                <div class="menu">
+                    <div class="menu-item">STUDENT PORTAL</div>
+                    <div class="menu-item"><a href="username.html">Audrey Gesare</a></div>
+                    <div class="menu-item active"><a href="courses.html">Courses</a></div>
+                    <div class="menu-item"><a href="events.html">Events</a></div>
+                    <div class="menu-item"><a href="inbox.html">Inbox</a></div>
+                    <div class="menu-item"><a href="mentor_info.html">Mentor Info</a></div>
+                    <div class="menu-item"><a href="goals.html">Goals</a></div>
+                    <div class="menu-item"><a href="sign_out.html">Sign Out</a></div>
+                </div>
+            </div>
+            <div class="main-content">
+                <div class="action-bar">
+                    <button class="search-button" onclick="searchCourses()">Search</button>
+                    <div class="filter-button">
+                        <button class="filter-dropdown">Filter</button>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="addNewCourse()">Add New Course</a>
+                            <a href="#" onclick="deleteCourse()">Delete Course</a>
+                            <a href="#" onclick="updateCourse()">Update Course</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="new-course-input">
+                    <input type="text" id="newCourseName" placeholder="Enter Course Name">
+                    <input type="text" id="newCourseDescription" placeholder="Enter Course Description">
+                    <button onclick="saveNewCourse()">Save New Course</button>
+                </div>
+                <div class="card-container" id="courseContainer">
+                    <!-- Courses will be dynamically added here -->
+
+                </div>
+            </div>
+        </div>
+        <script>
+            const initialCourses = [
+                { name: "Career Advice", description: "Expert guidance for shaping your career path.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 10.29.12.png" },
+                { name: "Mock Interview", description: "Improve interview skills with realistic practice.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 09.58.45.png" },
+                { name: "Resume Review", description: "Get feedback for a standout professional resume.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 10.26.27.png" },
+                { name: "Career Talks", description: "Inspiring discussions on key career topics.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 10.27.03.png" },
+                { name: "Mentor Follow up", description: "Ongoing support and progress tracking.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 10.28.15.png" },
+                { name: "Mentor Follow up", description: "Strengthen connections and achieve goals.", image: "/Users/mac/Desktop/MENTOR WEBSITE/images/Screenshot 2023-12-14 at 09.57.46.png" },
+            ];
+
+            function initializeCourses() {
+                const container = document.getElementById("courseContainer");
+                initialCourses.forEach((course) => {
+                    const card = createCourseCard(course);
+                    container.appendChild(card);
+                });
+            }
+
+            function createCourseCard(course) {
+                const card = document.createElement("div");
+                card.classList.add("card", "course");
+                card.setAttribute("data-course-name", course.name);
+                card.innerHTML = `
+                    <img src="${course.image}" alt="${course.name}">
+                    <h3>${course.name}</h3>
+                    <p>${course.description}</p>
+                `;
+                return card;
+            }
+
+            function addNewCourse() {
+                const newCourseInput = document.querySelector(".new-course-input");
+                newCourseInput.style.display = "block";
+            }
+
+            function saveNewCourse() {
+                const newCourseName = document.getElementById("newCourseName").value;
+                const newCourseDescription = document.getElementById("newCourseDescription").value;
+
+                if (newCourseName && newCourseDescription) {
+                    const container = document.getElementById("courseContainer");
+                    const newCourse = { name: newCourseName, description: newCourseDescription, image: "/path/to/default_image.jpg" };
+                    const card = createCourseCard(newCourse);
+                    container.appendChild(card);
+
+                    // Reset the input fields
+                    document.getElementById("newCourseName").value = "";
+                    document.getElementById("newCourseDescription").value = "";
+
+                    // Hide the input fields
+                    document.querySelector(".new-course-input").style.display = "none";
+                }
+            }
+
+            function deleteCourse() {
+                const container = document.getElementById("courseContainer");
+                const courseName = prompt("Enter the course name to delete:");
+                const courseToDelete = container.querySelector(`.card.course[data-course-name="${courseName}"]`);
+
+                if (courseToDelete) {
+                    container.removeChild(courseToDelete);
+                } else {
+                    alert("Course not found");
+                }
+            }
+
+            function updateCourse() {
+                const container = document.getElementById("courseContainer");
+                const courseName = prompt("Enter the course name to update:");
+                const courseToUpdate = container.querySelector(`.card.course[data-course-name="${courseName}"]`);
+
+                if (courseToUpdate) {
+                    // Update the course data
+                    const updatedCourse = { name: "Updated Course", description: "Brief description of Updated Course.", image: "/path/to/updated_image.jpg" };
+                    courseToUpdate.innerHTML = `
+                        <img src="${updatedCourse.image}" alt="${updatedCourse.name}">
+                        <h3>${updatedCourse.name}</h3>
+                        <p>${updatedCourse.description}</p>
+                    `;
+                } else {
+                    alert("Course not found");
+                }
+            }
+
+            function searchCourses() {
+                const searchTerm = prompt("Enter the course name to search:");
+                const container = document.getElementById("courseContainer");
+
+                container.querySelectorAll('.card.course').forEach(course => {
+                    const courseName = course.getAttribute("data-course-name");
+                    if (courseName.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        course.style.display = "block";
+                    } else {
+                        course.style.display = "none";
+                    }
+                });
+            }
+
+            // Initialize courses on page load
+            initializeCourses();
+        </script>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.student-portal {
+    display: flex;
+    background-color: #bcbcbc;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: rgb(56, 56, 56);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: none;
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from the parent */
+}
+
+.menu-item:hover {
+    background-color: #000000;
+}
+
+.menu-item.active {
+    background-color: #4290a3;
+    color: #ffffff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex; /* Add this line to enable flex layout */
+    flex-direction: column; /* Set flex direction to column */
+    align-items: flex-start; /* Align content to the start (left) */
+    background-color: rgb(40, 40, 40);
+    color: #030303;
+}
+
+h1 {
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+.goal-container {
+    display: flex;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.goal-category {
+    margin-bottom: 20px; /* Add space between goal categories */
+    width: 100%; /* Set width to 100% */
+}
+
+.goal-category h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left; /* Align goal category titles to the left */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Additional styles for the form */
+
+form {
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+form button {
+    background-color: #4290a3;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #000000;
+}

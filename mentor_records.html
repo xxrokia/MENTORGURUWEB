@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(40, 40, 40);
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        .action-buttons button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .action-buttons button:hover {
+            background-color: #4290a3;
+        }
+
+        .add-mentor-form {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .add-mentor-form input {
+            flex: 1;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .add-mentor-form button {
+            background-color: #4290a3;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-mentor-form button:hover {
+            background-color: #4290a3;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <h2>Mentor Records</h2>
+
+        <!-- Display mentor records in a table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Students</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="mentorTableBody">
+                <!-- Mentor records will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <!-- Add Mentor Form -->
+        <div class="add-mentor-form">
+            <input type="text" id="mentorName" placeholder="Mentor Name">
+            <input type="text" id="mentorEmail" placeholder="Mentor Email">
+            <button onclick="addMentor()">Add Mentor</button>
+        </div>
+    </div>
+
+    <script>
+        // Dummy data for initial testing
+        const mentors = [
+            { id: 1, name: 'Mentor A', email: 'mentorA@example.com', students: ['John Doe', 'Jane Smith'] },
+            { id: 2, name: 'Mentor B', email: 'mentorB@example.com', students: ['Bob Johnson', 'Alice Davis'] },
+            { id: 3, name: 'Mentor C', email: 'mentorA@example.com', students: ['John Doe', 'Jane Smith'] },
+            { id: 4, name: 'Mentor D', email: 'mentorB@example.com', students: ['Bob Johnson', 'Alice Davis'] },
+            { id: 5, name: 'Mentor E', email: 'mentorA@example.com', students: ['John Doe', 'Jane Smith'] },
+            { id: 6, name: 'Mentor F', email: 'mentorB@example.com', students: ['Bob Johnson', 'Alice Davis'] },
+            { id: 7, name: 'Mentor G', email: 'mentorA@example.com', students: ['John Doe', 'Jane Smith'] },
+        
+            // Add more dummy data as needed
+        ];
+
+        // Function to render mentor records in the table
+        function renderMentors() {
+            const tableBody = document.getElementById('mentorTableBody');
+            tableBody.innerHTML = '';
+
+            mentors.forEach(mentor => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${mentor.id}</td>
+                    <td>${mentor.name}</td>
+                    <td>${mentor.email}</td>
+                    <td>${mentor.students.join(', ')}</td>
+                    <td class="action-buttons">
+                        <button onclick="editMentor(${mentor.id})">Edit</button>
+                        <button onclick="deleteMentor(${mentor.id})">Delete</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to add a new mentor
+        function addMentor() {
+            const mentorName = document.getElementById('mentorName').value;
+            const mentorEmail = document.getElementById('mentorEmail').value;
+
+            // Add validation and other logic as needed
+
+            const newMentor = {
+                id: mentors.length + 1,
+                name: mentorName,
+                email: mentorEmail,
+                students: [] // Initially, the mentor has no students
+            };
+
+            mentors.push(newMentor);
+            renderMentors();
+        }
+
+        // Function to edit a mentor
+        function editMentor(mentorId) {
+            // Implement edit logic
+            alert(`Edit mentor with ID ${mentorId}`);
+        }
+
+        // Function to delete a mentor
+        function deleteMentor(mentorId) {
+            // Implement delete logic
+            const index = mentors.findIndex(mentor => mentor.id === mentorId);
+            if (index !== -1) {
+                mentors.splice(index, 1);
+                renderMentors();
+            }
+        }
+
+        // Initial rendering of mentors
+        renderMentors();
+    </script>
+</body>
+
+</html>

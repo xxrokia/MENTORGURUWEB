@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Login</h2>
+            <!-- Update form action and method -->
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" id="username" name="username" placeholder="Username" required
+                        value="agesare@mguru.com">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}"
+                        title="Password must contain at least 8 characters, including one uppercase letter, one lowercase letter, one number, and one special character">
+                </div>
+                <div class="remember-me">
+                    <input type="checkbox" id="remember" name="remember"> <label for="remember">Remember me?</label>
+                </div>
+                <button class="login-button" type="button" onclick="validateLogin()">Log In</button>
+            </form>
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+            <div class="no-account">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+            <!-- Links to admin.html and student.html -->
+            <div class="bottom-links">
+                <p> <a href="admin.html">Admin Dashboard</a> or <a href="login.html">Student Dashboard</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            // Validate username and password (you can add more validation logic)
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // For testing, check if the provided username and password match the sample values
+            if (username === 'agesare@mguru.com' && password === 'agesarE#01') {
+                // Redirect to courses.html
+
+                window.location.href = 'courses.html';
+            } else {
+                // Display an error message or take appropriate action
+                alert('Invalid username or password. Please try again.');
+            }
+        }
+    </script>

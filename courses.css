@@ -1,0 +1,201 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.student-portal {
+    display: flex;
+    background-color: #bcbcbc;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: rgb(56, 56, 56);
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.menu {
+    margin-top: 20px;
+}
+
+.menu-item {
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: none;
+}
+.menu-item a {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from the parent */
+}
+
+.menu-item:hover {
+    background-color: #000000;
+}
+
+.menu-item.active {
+    background-color: #4290a3;
+    color: #ffffff;
+}
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: rgb(40, 40, 40);
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.search-button {
+    background-color: #4290a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-button {
+    position: relative;
+    display: inline-block;
+}
+
+.filter-dropdown {
+    background-color: #4290a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.filter-button:hover .dropdown-content {
+    display: block;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 100%;
+    overflow: hidden; /* Hide any overflow */
+}
+
+.card {
+    flex: 1 1 300px; /* Each card should have a minimum width of 300px */
+    max-width: 300px; /* Set a maximum width for each card */
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden; /* Hide any overflow within the card */
+}
+
+.card img {
+    width: 100%;
+    max-height: 200px; /* Adjust the max height as needed */
+    object-fit: cover;
+    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+}
+
+
+.new-course-input {
+    display: none;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.new-course-input:hover {
+    background-color: #e0e0e0;
+}
+
+.new-course-input input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.new-course-input input:focus {
+    border-color: #4290a3;
+}
+
+.main-content {
+    padding: 20px;
+}
+
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-button,
+.filter-dropdown {
+    background-color: #4290a3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-dropdown:hover {
+    background-color: #366b7b;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 8px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #e0e0e0;
+}
+ 
